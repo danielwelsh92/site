@@ -1,0 +1,28 @@
+#top{
+display: inline-block;
+overflow: hidden;
+}
+
+#first{
+float: left;
+}
+
+#second{
+    overflow: hidden;
+}
+
+.nav{
+    display: inline-block;
+}
+
+button{
+    
+}
+
+body{
+    background: red;
+    background: -webkit-linear-gradient(red,yellow);
+    background: -o-linear-gradient(red,yellow);
+    background: -moz-linear-gradient(red,yellow);
+    background: linear-gradient(red,yellow,blue,green,red);
+}
