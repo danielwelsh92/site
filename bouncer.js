@@ -1,0 +1,70 @@
+var bX = 200;
+var bY = 200;
+var bXv =2;
+var bYv =0;
+
+var g = 1;
+
+var w;
+var px = document.clientX;
+var py = document.clientY;
+var ball = document.getElementById("ball");
+ball.style.position = "absolute";
+
+document.onmousemove = function(e){
+    px = e.pageX;
+    py = e.pageY;
+}
+
+function draw() {
+    
+    var windowHeight = $(window).height();
+    var scrollTop = $(window).scrollTop();
+    var viewBottom = scrollTop + windowHeight;
+
+    w = ball.clientWidth;
+    bYv += g;
+
+    var distX = px - bX;
+    var distY = py - bY;
+    var distance = Math.sqrt( (distX*distX) + (distY*distY) );
+
+    console.log(px);
+    if(distance < w/2)
+    {
+        bXv = -distX/2;
+        bYv = -distY/2;
+        // bXv =  (px + (bX - (w/2) )  )/100;
+        // bYv =  (py + (bY - (w/2) )  )/100;
+        console.log("hit");
+    }
+
+    if(bY + (w/2) >= viewBottom)
+    {
+        bYv = Math.abs(bYv)* -0.9;
+
+        if(Math.abs(bYv) < 1)
+        {
+            bY = viewBottom - (w/2);
+            bYv =-1;
+        }
+    }
+
+    if(bX + (w/2) >= $(window).width())
+    {
+        bXv  = Math.abs(bXv)*-1;
+    }
+    if(bX - (w/2) <= 0)
+    {
+        bXv  = Math.abs(bXv);
+    }
+    
+    bY+=bYv;
+
+    bX += bXv;
+    bXv*= 0.99;
+    ball.style.left = bX-(w/2)+"px";
+    ball.style.top = bY-(w/2)+"px";
+
+}
+setInterval(draw, 1000/60);
