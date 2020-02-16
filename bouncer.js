@@ -10,7 +10,8 @@ var px = document.clientX;
 var py = document.clientY;
 var ball = document.getElementById("ball");
 ball.style.position = "absolute";
-
+var windowHeight = $(window).height();
+var scrollTop = $(window).scrollTop();
 document.onmousemove = function(e){
     px = e.pageX;
     py = e.pageY;
@@ -18,8 +19,8 @@ document.onmousemove = function(e){
 
 function draw() {
     
-    var windowHeight = $(window).height();
-    var scrollTop = $(window).scrollTop();
+     windowHeight = $(window).height();
+     scrollTop = $(window).scrollTop();
     var viewBottom = scrollTop + windowHeight;
 
     w = ball.clientWidth;
