@@ -31,7 +31,7 @@ function draw() {
     var distY = py - bY;
     var distance = Math.sqrt( (distX*distX) + (distY*distY) );
 
-    console.log(px);
+
     if(distance < w/2)
     {
         bXv = -distX/bounceStr;
@@ -40,10 +40,10 @@ function draw() {
         document.getElementById("hits").innerText = ""+hits;
         // bXv =  (px + (bX - (w/2) )  )/100;
         // bYv =  (py + (bY - (w/2) )  )/100;
-        console.log("hit");
+
     }
 
-    if(bY + (w/2) >= viewBottom)
+    if((bY +bYv) + (w/2) >= viewBottom)
     {
         hits =0;
         document.getElementById("hits").innerText = ""+hits;
@@ -52,15 +52,16 @@ function draw() {
         if(Math.abs(bYv) < 1)
         {
             bY = viewBottom - (w/2);
-            bYv =-1;
+            bYv =0;
         }
     }
 
-    if(bX + (w/2) >= $(window).width())
+    if((bX + bXv) + (w/2) >= $(window).width())
     {
         bXv  = Math.abs(bXv)*-1;
+        bX  = $(window).width() - (w/2);
     }
-    if(bX - (w/2) <= 0)
+    if((bX + bXv) - (w/2) <= 0)
     {
         bXv  = Math.abs(bXv);
     }
